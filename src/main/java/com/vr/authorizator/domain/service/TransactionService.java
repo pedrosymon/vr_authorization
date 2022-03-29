@@ -8,7 +8,6 @@ import com.vr.authorizator.domain.model.entity.Card;
 import com.vr.authorizator.domain.model.entity.Transaction;
 import com.vr.authorizator.web.controller.dto.TransactionRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.redisson.api.RLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

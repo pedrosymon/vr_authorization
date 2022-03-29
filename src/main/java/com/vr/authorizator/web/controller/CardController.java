@@ -7,10 +7,8 @@ import com.vr.authorizator.web.controller.dto.CardCreateRequest;
 import com.vr.authorizator.web.controller.dto.CardCreateResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
@@ -26,11 +24,13 @@ public class CardController {
 
     @PostMapping
     public ResponseEntity<CardCreateResponse> createCard(@RequestBody @Valid final CardCreateRequest request) throws CardAlredyExistsException {
+        log.debug("createcard request:{}", request);
         return new ResponseEntity<>(new CardCreateResponse(service.createCard(request)), CREATED);
     }
 
     @GetMapping("/{numeroCartao}")
     public ResponseEntity<Double> getBalance(@PathVariable("numeroCartao") final String cardNumber) throws CardNotExistsException {
+        log.debug("getbalance cardNumber:{}", cardNumber);
         return ResponseEntity.ok(service.getBalance(cardNumber).getBalance());
     }
 }
